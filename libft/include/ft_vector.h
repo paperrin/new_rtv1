@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 19:50:27 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/02 19:09:10 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 16:32:44 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define VECTOR_PUSHR_FRONT(V, R) ft_vector_push_front(&V, (char*)R)
 # define VECTOR_PUSH_FRONT(V, T, P) (P = (T*)ft_vector_push_front(&V, NULL))
 
-typedef struct		s_vector
+typedef struct	s_vector
 {
 	char		*begin;
 	char		*end;
@@ -32,7 +32,7 @@ typedef struct		s_vector
 	size_t		reserve;
 	int			(*f_copy)(char*, char*);
 	void		(*f_free)(char*);
-}					t_vector;
+}				t_vector;
 
 /*
 ** vector/ft_vector.c

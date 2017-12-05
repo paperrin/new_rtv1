@@ -12,7 +12,7 @@
 
 NAME		=	rtv1
 
-CC			=	clang
+CC			=	gcc
 
 CFLAGS		=	-g -O3 -Wall -Wextra -Werror -std=c89 -pedantic \
 				-Wmissing-prototypes -Wstrict-prototypes \

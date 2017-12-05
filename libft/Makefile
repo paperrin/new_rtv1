@@ -215,7 +215,7 @@ $(NAME)			:	$(OBJ)
 					ranlib $(NAME)
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.c
-					gcc $(CFLAGS) -I$(INC_DIR) -MMD -MP -c $< -o $@
+					$(CC) $(CFLAGS) -I$(INC_DIR) -MMD -MP -c $< -o $@
 
 $(OBJ_DIR)		:
 					mkdir -p $(OBJ_DIR)

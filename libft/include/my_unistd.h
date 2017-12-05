@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_next_line.h                                 :+:      :+:    :+:   */
+/*   my_unistd.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/11 12:49:16 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 16:59:36 by paperrin         ###   ########.fr       */
+/*   Created: 2017/12/05 16:52:11 by paperrin          #+#    #+#             */
+/*   Updated: 2017/12/05 16:57:58 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE_H
-# define FT_GET_NEXT_LINE_H
+#ifndef MY_UNISTD_H
+# define MY_UNISTD_H
 
-# include <stdlib.h>
-# include "my_unistd.h"
-# include "libft.h"
-
-# define BUFF_SIZE 4096
-
-typedef struct	s_fd
-{
-	int		fd;
-	char	*buff;
-	char	*read_pos;
-	int		nb_bytes;
-}				t_fd;
-
-int				ft_get_next_line(const int fd, char **line);
+# ifdef _WIN32
+#  include <io.h>
+#  define STDIN_FILENO 0
+#  define STDOUT_FILENO 1
+#  define STDERR_FILENO 2
+# else
+#  include <unistd.h>
+# endif
 
 #endif

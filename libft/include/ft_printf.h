@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 16:29:36 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 15:15:57 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 16:59:56 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # include <stdint.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include "my_unistd.h"
 
 # define FT_PRINTF_NB_FLAGS 11
 # define FT_PRINTF_NB_BRACKETS 21
