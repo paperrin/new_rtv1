@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:32:48 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/04 20:42:57 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:36:15 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			destroy_app(t_app *app, int exit_code)
 	exit(exit_code);
 }
 
-void			callback_loop(void *user_ptr)
+void			f_callback_loop(void *user_ptr)
 {
 	t_app	*app;
 
@@ -49,7 +49,7 @@ int				main(void)
 	if (!create_app(&app, WIN_WIDTH, WIN_HEIGHT, "RTv1 paperrin"))
 		return (EXIT_FAILURE);
 	window_callback_key(&app.win, &f_callback_key);
-	callback_loop(&app);
+	f_callback_loop(&app);
 	window_loop(&app.win, &app);
 	destroy_app(&app, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);

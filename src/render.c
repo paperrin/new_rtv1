@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:59:54 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/04 20:36:45 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:46:33 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ void			render(t_app *app)
 	t_camera		cam;
 	int				width = app->draw_buf.width;
 	int				height = app->draw_buf.height;
+	double			pxl_ratio;
+	int				cyl_id;
+	t_vec3d			rot;
 
 	cam = cam_create();
 
@@ -128,7 +131,7 @@ void			render(t_app *app)
 #define SCENE 1
 
 #if SCENE == 0
-// MOLECULES SCENE =========================================================
+/* MOLECULES SCENE ========================================================= */
 
 	ft_array_push_back(&scene.objs
 		, obj_sphere_new(ft_vec3d(0, 0, 1), 0.4
@@ -155,13 +158,13 @@ void			render(t_app *app)
 		, obj_sphere_new(ft_vec3d(-5, 10, 1), 0.4
 			, ft_clrf_rgb(0, 0.8, 0)));
 
-	// white plane
+	/* white plane */
 	ft_array_push_back(&scene.objs
 		, obj_plane_new(ft_vec3d(0, 0, 5)
 			, ft_vec3d(0, 0, -1)
 			, ft_clrf_rgb(1, 1, 1)));
 
-	// blue plane
+	/* blue plane */
 	ft_array_push_back(&scene.objs
 		, obj_plane_new(ft_vec3d(0, -2, 0)
 			, ft_vec3d(0, 1, 0)
@@ -183,43 +186,43 @@ void			render(t_app *app)
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
 #elif SCENE == 1
-// CYLINDERS SCENE =========================================================
-	double		pxl_ratio = 1. / 1;
-	// diagonal cyl
+/* CYLINDERS SCENE ========================================================= */
+
+	pxl_ratio = 1. / 1;
+	/* diagonal cyl */
 	ft_array_push_back(&scene.objs
 		, obj_cylinder_new(ft_vec3d(-2.5, 2, 0)
 		, ft_vec3d_norm(ft_vec3d(0.5, -0.5, 0)), 0.2, ft_clrf_rgb(0.8, 0.8, 0)));
 
-	// orange cyl
+	/* orange cyl */
 	ft_array_push_back(&scene.objs
 		, obj_cylinder_new(ft_vec3d(0, -8, 0)
 		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0)));
 
-	// pink cyl
+	/* pink cyl */
 	ft_array_push_back(&scene.objs
 		, obj_cylinder_new(ft_vec3d(0, 8, 0)
 		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0.8)));
 
-	// red cyl
+	/* red cyl */
 	ft_array_push_back(&scene.objs
 		, obj_cylinder_new(ft_vec3d(1, 0, 0)
 		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 0.35, ft_clrf_rgb(1, 0, 0)));
 
-	// right green cyl
+	/* right green cyl */
 	ft_array_push_back(&scene.objs
 		, obj_cylinder_new(ft_vec3d(0, 0, 0)
 		, ft_vec3d_norm(ft_vec3d(0, 1, 0)), 0.8
 		, ft_clrf_rgb(0, 0.8, 0)));
 
-	// blue plane
-	//*/
+	/* blue plane */
+
 	ft_array_push_back(&scene.objs
 		, obj_plane_new(ft_vec3d(0, 0, 0)
 		, ft_vec3d_rot(ft_vec3d(0, 0, -1), 0, 0, 0)
 		, ft_clrf_rgb(0.5, 0.5, 0.8)));
-	//*/
 
-	int		cyl_id = 4;
+	cyl_id = 4;
 	ft_putnbr(((t_obj**)scene.objs.begin)[cyl_id]->type);
 	ft_putendl("");
 	print_vec("dir", ((t_cylinder*)((t_obj**)scene.objs.begin)[cyl_id]->o)->dir);
@@ -227,7 +230,9 @@ void			render(t_app *app)
 	printf("radius: %lf\n", ((t_cylinder*)((t_obj**)scene.objs.begin)[cyl_id]->o)->radius);
 	ft_putnbr(((t_obj**)scene.objs.begin)[cyl_id]->type);
 
-	//scene.light_pos = ft_vec3d(-6, 4, -5);
+	/*
+	scene.light_pos = ft_vec3d(-6, 4, -5);
+	*/
 	scene.light_pos = ft_vec3d(0, 0, -5);
 	scene.light_i = 400;
 
@@ -236,7 +241,7 @@ void			render(t_app *app)
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
 	cam = cam_create();
-	t_vec3d		rot = ft_vec3d(0, M_PI / 3, 0);
+	rot = ft_vec3d(0, M_PI / 3, 0);
 	cam.dir = ft_vec3d_norm(ft_vec3d_rot(cam.dir, rot.x, rot.y, rot.z));
 	cam.right = ft_vec3d_norm(ft_vec3d_rot(cam.right, rot.x, rot.y, rot.z));
 	cam.up = ft_vec3d_norm(ft_vec3d_rot(cam.up, rot.x, rot.y, rot.z));
@@ -263,6 +268,6 @@ void			render(t_app *app)
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
 #endif
-// END SCENES =================================================================
+/* END SCENES ================================================================= */
 	image_put(&app->draw_buf, 0, 0);
 }

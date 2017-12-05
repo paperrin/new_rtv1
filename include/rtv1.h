@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:34:16 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/04 20:14:04 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:36:31 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum		e_obj_type
 	obj_type_plane = 0,
 	obj_type_sphere = 1,
 	obj_type_cylinder = 2,
-	obj_type_cone = 3,
+	obj_type_cone = 3
 }					t_obj_type;
 
 typedef struct		s_app
@@ -105,12 +105,13 @@ typedef struct		s_camera
 	double		px_ratio;
 }					t_camera;
 
-// TODO : DELETE
+/* TODO : DELETE */
 void				print_vec(char *tag, t_vec3d vec);
 
 void				destroy_app(t_app *app, int exit_code);
 void				render(t_app *app);
 
+void				f_callback_loop(void *user_ptr);
 void				f_callback_key(void *user_ptr, int key, int action);
 
 t_camera			cam_create(void);

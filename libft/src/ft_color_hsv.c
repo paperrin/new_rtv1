@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 19:53:52 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/07 22:24:06 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:54:14 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,10 @@
 t_color_hsv		ft_color_hsv(unsigned short h, unsigned char s
 		, unsigned char v)
 {
-	return ((t_color_hsv){h % 360, s % 100, v % 100});
+	t_color_hsv		color;
+
+	color.h = h % 361;
+	color.s = s % 101;
+	color.v = v % 101;
+	return (color);
 }

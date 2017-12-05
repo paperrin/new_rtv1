@@ -6,28 +6,26 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 01:04:59 by paperrin          #+#    #+#             */
-/*   Updated: 2017/09/29 17:30:59 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:25:13 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_array.h"
 
 static void		set_new_meta(t_array *old, t_array *new
-	, size_t reserve_front, size_t reserve_back)
+		, size_t reserve_front, size_t reserve_back)
 {
-	*new = (t_array){
-		.data = new->data,
-		.begin = &new->data[reserve_front],
-		.end = &new->data[reserve_front + old->size - 1],
-		.f_free = old->f_free,
-		.size = old->size,
-		.reserve_front = reserve_front,
-		.reserve_back = reserve_back
-	};
+	new->data = new->data;
+	new->begin = &new->data[reserve_front];
+	new->end = &new->data[reserve_front + old->size - 1];
+	new->f_free = old->f_free;
+	new->size = old->size;
+	new->reserve_front = reserve_front;
+	new->reserve_back = reserve_back;
 }
 
 t_array_it		ft_array_reserve(t_array *array
-	, size_t reserve_front, size_t reserve_back)
+		, size_t reserve_front, size_t reserve_back)
 {
 	t_array		new;
 	size_t		i;
@@ -35,10 +33,10 @@ t_array_it		ft_array_reserve(t_array *array
 	reserve_front = MAX(reserve_front, array->reserve_front);
 	reserve_back = MAX(reserve_back, array->reserve_back);
 	if (reserve_front <= array->reserve_front
-		&& reserve_back <= array->reserve_back)
+			&& reserve_back <= array->reserve_back)
 		return (array->begin);
 	new.data = (void**)malloc(sizeof(void*)
-		* (array->size + reserve_front + reserve_back));
+			* (array->size + reserve_front + reserve_back));
 	if (array->data && !new.data)
 		return (NULL);
 	set_new_meta(array, &new, reserve_front, reserve_back);

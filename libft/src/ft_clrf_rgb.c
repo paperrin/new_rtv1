@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 21:37:08 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/28 00:49:56 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:57:49 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 
 t_clrf_rgb		ft_clrf_rgba(float r, float g, float b, float a)
 {
-	return ((t_clrf_rgb){r, g, b, a});
+	t_clrf_rgb		color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+	return (color);
 }
 
 t_clrf_rgb		ft_clrf_rgb(float r, float g, float b)
 {
-	return ((t_clrf_rgb){r, g, b, 1});
+	t_clrf_rgb		color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = 1;
+	return (color);
 }
 
 t_clrf_rgb		ft_clrf_rgb_clamp(t_clrf_rgb color)

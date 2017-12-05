@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 20:08:06 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/06 23:37:59 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:54:58 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 t_color_rgb		ft_color_rgb(unsigned char r, unsigned char g
 		, unsigned char b)
 {
-	return ((t_color_rgb){r, g, b});
+	t_color_rgb		color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return (color);
 }
 
 t_color_rgb		ft_color_rgb_add_rgba(t_color_rgb rgb, t_color_rgba rgba)

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 18:56:33 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/09 03:48:58 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:59:21 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ t_vec2i			ft_vec2i(int x, int y)
 {
 	t_vec2i		ret;
 
-	ret = (t_vec2i){
-		.x = x,
-		.y = y
-	};
+	ret.x = x;
+	ret.y = y;
 	return (ret);
 }
 

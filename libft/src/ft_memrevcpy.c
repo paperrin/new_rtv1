@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 15:48:36 by paperrin          #+#    #+#             */
-/*   Updated: 2016/11/08 15:53:57 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:38:33 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_memrevcpy(void *dst, const void *src, size_t n)
 
 	if (n)
 	{
-		d = dst + n - 1;
-		s = src + n - 1;
+		d = (unsigned char*)dst + n - 1;
+		s = (unsigned char*)src + n - 1;
 		while (n--)
 			*(d--) = *(s--);
 	}

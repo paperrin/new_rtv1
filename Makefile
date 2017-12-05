@@ -12,9 +12,11 @@
 
 NAME		=	rtv1
 
-CC			=	gcc
+CC			=	clang
 
-CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-g -O3 -Wall -Wextra -Werror -std=c89 -pedantic \
+				-Wmissing-prototypes -Wstrict-prototypes \
+				-Wold-style-definition -Wno-long-long
 
 RM			=	rm -rf
 

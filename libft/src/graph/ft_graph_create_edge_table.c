@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 20:56:34 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/21 19:13:06 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:33:08 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,16 @@ static t_edge	*create_edge(t_vec3f *va, t_color_rgb *ca
 		ft_swap((void**)&va, (void**)&vb);
 		ft_swap((void**)&ca, (void**)&cb);
 	}
-	*edge = (t_edge){
-		.y_max = roundf(vb->y),
-		.y_min = roundf(va->y),
-		.x = va->x,
-		.color_max = *cb,
-		.color_min = *ca,
-		.color = *ca,
-		.sign = (vb->x > va->x ? 1 : -1),
-		.dx = ABS(va->x - vb->x),
-		.dy = ABS(va->y - vb->y),
-		.sum = 0
-	};
+	edge->y_max = roundf(vb->y);
+	edge->y_min = roundf(va->y);
+	edge->x = va->x;
+	edge->color_max = *cb;
+	edge->color_min = *ca;
+	edge->color = *ca;
+	edge->sign = (vb->x > va->x ? 1 : -1);
+	edge->dx = ABS(va->x - vb->x);
+	edge->dy = ABS(va->y - vb->y);
+	edge->sum = 0;
 	return (edge);
 }
 

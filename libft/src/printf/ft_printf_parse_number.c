@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/24 16:20:37 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/26 20:28:29 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:19:44 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static t_string		parse_special(char type, uintmax_t nb, uint16_t flags
 	prefix = (printf_flag_alt & flags);
 	if (printf_flag_pointer & flags)
 		prefix = 2;
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	if ('o' == type)
 		ret.s = ft_itoa_oct(nb, prefix, precision);
 	else if ('b' == type)
@@ -80,7 +80,7 @@ t_string			ft_printf_parse_number(char type, va_list ap, uint16_t flags
 		prefix = '+';
 	else if (printf_flag_space & flags)
 		prefix = ' ';
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	if (ft_strchr("di", type))
 		ret.s = ft_itoa_dec(get_signed(ap, flags), printf_flag_alt & flags,
 				prefix, precision);

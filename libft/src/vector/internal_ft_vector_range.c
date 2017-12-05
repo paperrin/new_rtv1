@@ -6,11 +6,12 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 23:05:58 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/02 17:14:02 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:30:01 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "internal_ft_vector.h"
 
 int				internal_ft_vector_copy_range(t_vector *vector, char *dst
 		, char *src, size_t n)

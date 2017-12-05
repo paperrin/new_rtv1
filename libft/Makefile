@@ -14,7 +14,9 @@ NAME		=	libft.a
 
 CC			=	gcc
 
-CFLAGS		=	-O3 -g -Wall -Wextra -Werror
+CFLAGS		=	-g -O3 -Wall -Wextra -Werror -std=c89 -pedantic \
+				-Wmissing-prototypes -Wstrict-prototypes \
+				-Wold-style-definition -Wno-long-long
 
 RM			=	rm -rf
 
@@ -25,6 +27,7 @@ OBJ_DIR		=	./obj/
 INC_DIR		=	./include/
 
 CFILES		=	ft_swap.c			\
+				ft_string.c			\
 				ft_memset.c			\
 				ft_bzero.c			\
 				ft_memcpy.c			\
@@ -116,9 +119,6 @@ CFILES		=	ft_swap.c			\
 				ft_lstlen.c			\
 				ft_get_next_line.c	\
 				ft_sqrt.c			\
-				ft_rbtree_new.c		\
-				ft_rbtree_add.c		\
-				ft_rbtree_print.c	\
 				ft_hash_string.c	\
 				ft_wchar.c			\
 				ft_color_rgb.c			\
@@ -154,6 +154,7 @@ CFILES		=	ft_swap.c			\
 				math/ft_vec2f_add.c			\
 				math/ft_vec2f_mag.c			\
 				math/ft_vec2f_rot_scale.c	\
+				printf/ft_printf_field.c			\
 				printf/ft_printf_core.c				\
 				printf/ft_printf_parse.c			\
 				printf/ft_printf_parse_field.c		\

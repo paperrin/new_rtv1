@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 17:14:49 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/26 17:38:11 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:21:14 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void			parse_ws(t_string *ret, va_list ap, t_printf_field *field)
 	size_t		str_len;
 
 	if (!(ws = va_arg(ap, wchar_t*)))
-		*ret = (t_string){ft_strdup("(null)"), 6};
+		*ret = ft_string(ft_strdup("(null)"), 6);
 	else
 	{
 		str_len = ft_wstrlen_char(ws);
@@ -39,7 +39,7 @@ static void			parse_s(t_string *ret, va_list ap, t_printf_field *field)
 	size_t		str_len;
 
 	if (!(s = va_arg(ap, char*)))
-		*ret = (t_string){ft_strdup("(null)"), 6};
+		*ret = ft_string(ft_strdup("(null)"), 6);
 	else
 	{
 		str_len = ft_strlen(s);
@@ -57,7 +57,7 @@ static t_string		parse(char type, va_list ap, uint16_t flags
 {
 	t_string	ret;
 
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	if ('S' == type || (printf_flag_l & flags))
 		parse_ws(&ret, ap, field);
 	else
@@ -70,7 +70,7 @@ t_string			ft_printf_parse_string(const char *format, va_list ap
 {
 	t_string	ret;
 
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	ret = parse(*format, ap, flags, &field);
 	if (!ret.s)
 		return (ret);

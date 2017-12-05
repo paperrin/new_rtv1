@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 16:55:23 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/11 15:26:52 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:27:09 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void				ft_array_free(t_array *array)
 {
 	if (array->data)
 		free(array->data);
-	*array = (t_array){
-		.data = NULL,
-		.begin = NULL,
-		.end = NULL,
-		.f_free = NULL,
-		.size = 0,
-		.reserve_front = 0,
-		.reserve_back = 0
-	};
+	array->data = NULL;
+	array->begin = NULL;
+	array->end = NULL;
+	array->f_free = NULL;
+	array->size = 0;
+	array->reserve_front = 0;
+	array->reserve_back = 0;
 }

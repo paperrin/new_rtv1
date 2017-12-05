@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/06 17:41:28 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/06 23:16:26 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:02:18 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ t_vec3d			ft_vec3d(double x, double y, double z)
 {
 	t_vec3d		ret;
 
-	ret = (t_vec3d){
-		.x = x,
-		.y = y,
-		.z = z
-	};
+	ret.x = x;
+	ret.y = y;
+	ret.z = z;
 	return (ret);
 }
 

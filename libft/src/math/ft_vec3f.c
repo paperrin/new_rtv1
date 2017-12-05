@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 14:23:41 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/09 03:45:30 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:59:39 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ t_vec3f			ft_vec3f(float x, float y, float z)
 {
 	t_vec3f		ret;
 
-	ret = (t_vec3f){
-		.x = x,
-		.y = y,
-		.z = z
-	};
+	ret.x = x;
+	ret.y = y;
+	ret.z = z;
 	return (ret);
 }
 

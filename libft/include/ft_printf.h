@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 16:29:36 by paperrin          #+#    #+#             */
-/*   Updated: 2017/08/03 22:41:56 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:15:57 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef enum	e_printf_flags
 	printf_flag_ll = 1 << 8,
 	printf_flag_j = 1 << 9,
 	printf_flag_z = 1 << 10,
-	printf_flag_pointer = 1 << 11,
+	printf_flag_pointer = 1 << 11
 }				t_printf_flags;
 
 int				ft_asprintf(char **ret, const char *format, ...);
@@ -64,6 +64,8 @@ int				ft_vdprintf(int fd, const char *format, va_list ap);
 
 int				ft_printf(const char *format, ...);
 int				ft_vprintf(const char *format, va_list ap);
+
+t_printf_field	ft_printf_field(int min, int precision);
 
 int				ft_printf_core(char **str, const char *format, va_list ap);
 t_string		ft_printf_parse(char *format, va_list ap, int *esc_seq_len);

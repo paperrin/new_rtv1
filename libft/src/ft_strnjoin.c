@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:30:11 by paperrin          #+#    #+#             */
-/*   Updated: 2016/12/14 19:06:54 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:06:21 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_strnjoin(t_strnjoin_arg s1, t_strnjoin_arg s2)
+char				*ft_strnjoin(t_strnjoin_arg s1, t_strnjoin_arg s2)
 {
 	char	*ret;
 
@@ -32,7 +32,8 @@ char	*ft_strnjoin(t_strnjoin_arg s1, t_strnjoin_arg s2)
 	return (ret);
 }
 
-char	*ft_strnjoin_free(t_strnjoin_arg s1, t_strnjoin_arg s2, int free)
+char				*ft_strnjoin_free(t_strnjoin_arg s1, t_strnjoin_arg s2,
+		int free)
 {
 	char	*ret;
 
@@ -44,4 +45,13 @@ char	*ft_strnjoin_free(t_strnjoin_arg s1, t_strnjoin_arg s2, int free)
 	if (free == STRJOIN_FREE_BOTH || free == STRJOIN_FREE_S2)
 		ft_strdel(s2.s);
 	return (ret);
+}
+
+t_strnjoin_arg		ft_strnjoin_arg(char **s, int n)
+{
+	t_strnjoin_arg		arg;
+
+	arg.s = s;
+	arg.n = n;
+	return (arg);
 }

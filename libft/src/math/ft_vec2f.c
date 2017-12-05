@@ -6,7 +6,7 @@
 /*   By: paperrin <paperrin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:45:13 by paperrin          #+#    #+#             */
-/*   Updated: 2017/10/29 19:42:47 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:59:04 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ t_vec2f			ft_vec2f(float x, float y)
 {
 	t_vec2f		ret;
 
-	ret = (t_vec2f){
-		.x = x,
-		.y = y
-	};
+	ret.x = x;
+	ret.y = y;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 16:38:53 by paperrin          #+#    #+#             */
-/*   Updated: 2016/12/14 18:53:18 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:20:18 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_string		parse(char type, va_list ap, uint16_t flags)
 	int			i;
 	char		c;
 
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	if ('C' == type || (printf_flag_l & flags))
 	{
 		wc = va_arg(ap, wint_t);
@@ -45,7 +45,7 @@ t_string			ft_printf_parse_char(const char *format, va_list ap
 {
 	t_string	ret;
 
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	ret = parse(*format, ap, flags);
 	if (!ret.s)
 		return (ret);

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 15:32:33 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/26 22:52:59 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:11:53 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static int		add_value(t_string *str, const char *format, va_list ap
 		ft_strdel(&str->s);
 		return (-1);
 	}
-	if (!(concat = ft_strnjoin_free((t_strnjoin_arg){&str->s, str->n}
-					, (t_strnjoin_arg){&value.s, value.n}, STRJOIN_FREE_BOTH)))
+	if (!(concat = ft_strnjoin_free(ft_strnjoin_arg(&str->s, str->n)
+					, ft_strnjoin_arg(&value.s, value.n), STRJOIN_FREE_BOTH)))
 		return (-1);
-	*str = (t_string){concat, str->n + value.n};
+	*str = ft_string(concat, str->n + value.n);
 	return (len + 1);
 }
 
@@ -56,8 +56,8 @@ static int		add_text(t_string *str, const char *format, int is_bracket)
 	}
 	if (i == 0)
 		return (0);
-	if (!(concat = ft_strnjoin_free((t_strnjoin_arg){&str->s, str->n}
-			, (t_strnjoin_arg){(char**)&format, i}, STRJOIN_FREE_S1)))
+	if (!(concat = ft_strnjoin_free(ft_strnjoin_arg(&str->s, str->n)
+			, ft_strnjoin_arg((char**)&format, i), STRJOIN_FREE_S1)))
 		return (-1);
 	str->s = concat;
 	str->n += i;
@@ -78,8 +78,8 @@ static int		add_color(t_string *str, const char *format, int *is_bracket)
 	if (len <= 0)
 		return (len);
 	bracket_str_len = ft_strlen(bracket_str);
-	if (!(concat = ft_strnjoin_free((t_strnjoin_arg){&str->s, str->n}
-			, (t_strnjoin_arg){&bracket_str, bracket_str_len}
+	if (!(concat = ft_strnjoin_free(ft_strnjoin_arg(&str->s, str->n)
+			, ft_strnjoin_arg(&bracket_str, bracket_str_len)
 			, STRJOIN_FREE_BOTH)))
 		return (-1);
 	str->s = concat;

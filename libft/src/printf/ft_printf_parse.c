@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 15:37:25 by paperrin          #+#    #+#             */
-/*   Updated: 2017/07/26 20:25:29 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:16:48 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static t_printf_parser		get_parser(char *format)
 	while (i < FT_PRINTF_NB_PARSERS * 2)
 	{
 		if (ft_strchr(parser_list[i], *format))
-			return (parser_list[i + 1]);
+			return ((t_printf_parser)parser_list[i + 1]);
 		i += 2;
 	}
 	return (NULL);
@@ -94,9 +94,9 @@ t_string					ft_printf_parse(char *format, va_list ap,
 	uint16_t				flags;
 	t_string				ret;
 
-	ret = (t_string){NULL, 0};
+	ret = ft_string(NULL, 0);
 	f_parse = NULL;
-	field = (t_printf_field){0, -1};
+	field = ft_printf_field(0, -1);
 	flags = 0;
 	*format_len = 1;
 	flag_len = 0;
@@ -106,7 +106,7 @@ t_string					ft_printf_parse(char *format, va_list ap,
 		&& !(flag_len = ft_printf_parse_field(&field, &format[*format_len])))
 		{
 			*format_len -= 1;
-			return ((t_string){ft_strnew(0), 0});
+			return (ft_string(ft_strnew(0), 0));
 		}
 	if (!f_parse)
 		return (ret);

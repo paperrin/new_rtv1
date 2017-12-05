@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 15:17:25 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/30 14:03:14 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:02:37 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct	s_matrix
 	float	m[MATH_MX_SIZE * MATH_MX_SIZE];
 }				t_matrix;
 
-t_matrix		*ft_matrix_new();
+t_matrix		*ft_matrix_new(void);
 t_matrix		*ft_matrix_copy(t_matrix *dst, t_matrix const *const src);
 void			ft_matrix_del(t_matrix **mx);
 void			ft_matrix_to_identity(t_matrix *const mx);
@@ -89,7 +89,7 @@ t_vec3f			ft_vec3f_mult(t_vec3f a, t_vec3f b);
 float			ft_vec3f_mag(t_vec3f vec);
 float			ft_vec3f_dot(t_vec3f a, t_vec3f b);
 t_vec3f			ft_vec3f_norm(t_vec3f vec);
-t_vec3f			ft_vec3f_rot_z(t_vec3f vec, float angle);
+t_vec3f			ft_vec3f_rot_x(t_vec3f vec, float angle);
 t_vec3f			ft_vec3f_rot_y(t_vec3f vec, float angle);
 t_vec3f			ft_vec3f_rot_z(t_vec3f vec, float angle);
 t_vec3f			ft_vec3f_rot(t_vec3f vec, float x, float y, float z);
@@ -104,7 +104,7 @@ t_vec3d			ft_vec3d_cross(t_vec3d a, t_vec3d b);
 double			ft_vec3d_mag(t_vec3d vec);
 double			ft_vec3d_dot(t_vec3d a, t_vec3d b);
 t_vec3d			ft_vec3d_norm(t_vec3d vec);
-t_vec3d			ft_vec3d_rot_z(t_vec3d vec, double angle);
+t_vec3d			ft_vec3d_rot_x(t_vec3d vec, double angle);
 t_vec3d			ft_vec3d_rot_y(t_vec3d vec, double angle);
 t_vec3d			ft_vec3d_rot_z(t_vec3d vec, double angle);
 t_vec3d			ft_vec3d_rot(t_vec3d vec, double x, double y, double z);

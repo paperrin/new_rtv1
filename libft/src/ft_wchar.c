@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 16:21:37 by paperrin          #+#    #+#             */
-/*   Updated: 2016/12/12 17:16:55 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:49:18 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t			ft_wchar_len(wchar_t c)
 {
 	size_t		i;
 
-	if (c < 0b10000000)
+	if (c < 0x80)
 		return (1);
 	i = 0;
 	while (c != 0)
@@ -36,7 +36,7 @@ char			ft_wchar_char_at(wchar_t c, size_t index)
 	char				mask;
 
 	size = ft_wchar_len(c);
-	mask = 0b11111000;
+	mask = 0xF8;
 	if (index >= size)
 		return (-1);
 	if (size == 1)
@@ -44,7 +44,7 @@ char			ft_wchar_char_at(wchar_t c, size_t index)
 	if (index == 0 && size > 1)
 		mask = mask << (max_len - size);
 	else
-		mask = 0b11000000;
+		mask = 0xC0;
 	c >>= (size - index - 1) * 6;
 	c &= (~mask);
 	c |= mask << 1;

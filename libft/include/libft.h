@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 12:52:47 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/29 23:19:17 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:10:03 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_string
 	size_t	n;
 }				t_string;
 
+t_string		ft_string(char *s, size_t n);
 void			ft_swap(void **a, void **b);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);
@@ -51,6 +52,7 @@ wchar_t			*ft_wstrcpy(wchar_t *dst, const wchar_t *src);
 char			*ft_strdup(const char *s1);
 char			*ft_strndup(const char *s1, size_t n);
 wchar_t			*ft_wstrdup(const wchar_t *s1);
+char			*ft_strdupw(const wchar_t *ws);
 char			*ft_strdupw_nchar(const wchar_t *ws, size_t n);
 size_t			ft_strlen(const char *s);
 size_t			ft_wstrlen(const wchar_t *ws);
@@ -103,6 +105,7 @@ char			*ft_strjoin_free(char **a, char **b, int free);
 char			*ft_strnjoin(t_strnjoin_arg s1, t_strnjoin_arg s2);
 char			*ft_strnjoin_free(t_strnjoin_arg s1, t_strnjoin_arg s2
 		, int free);
+t_strnjoin_arg	ft_strnjoin_arg(char **s, int n);
 wchar_t			*ft_wstrjoin(wchar_t const *s1, wchar_t const *s2);
 wchar_t			*ft_wstrjoin_free(wchar_t **a, wchar_t **b, int free);
 char			*ft_strtrim(char const *s);
