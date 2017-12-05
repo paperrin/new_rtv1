@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:06:12 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/05 00:16:13 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/05 19:23:53 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SET(SRC_FILES
 	src/ft_itoa_oct.c
 	src/ft_itoa_bin.c
 	src/ft_itoa_dec.c
+	src/ft_ftoa.c
 	src/ft_putchar.c
 	src/ft_putwchar.c
 	src/ft_putnchar.c
@@ -109,9 +110,6 @@ SET(SRC_FILES
 	src/ft_lstlen.c
 	src/ft_get_next_line.c
 	src/ft_sqrt.c
-	src/ft_rbtree_new.c
-	src/ft_rbtree_add.c
-	src/ft_rbtree_print.c
 	src/ft_hash_string.c
 	src/ft_wchar.c
 	src/ft_color_rgb.c
@@ -124,6 +122,7 @@ SET(SRC_FILES
 	src/ft_clrf_rgb.c
 	src/ft_clrf_rgb_op.c
 	src/ft_clrf_rgb_scale.c
+	src/ft_string.c
 	src/ft_lerp.c
 	src/math/ft_vec2i.c
 	src/math/ft_vec2f.c
@@ -147,6 +146,7 @@ SET(SRC_FILES
 	src/math/ft_vec2f_add.c
 	src/math/ft_vec2f_mag.c
 	src/math/ft_vec2f_rot_scale.c
+	src/printf/ft_printf_field.c
 	src/printf/ft_printf_core.c
 	src/printf/ft_printf_parse.c
 	src/printf/ft_printf_parse_field.c

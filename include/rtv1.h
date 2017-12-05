@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:34:16 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 15:36:31 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 18:00:40 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft.h"
 # include "ft_math.h"
 # include "ft_color.h"
-# include "ft_array.h"
+# include "ft_vector.h"
 
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
@@ -53,12 +53,6 @@ typedef struct		s_ray
 	t_vec3d		dir;
 }					t_ray;
 
-typedef struct		s_obj
-{
-	t_obj_type	type;
-	void		*o;
-}					t_obj;
-
 typedef struct		s_sphere
 {
 	t_vec3d		orig;
@@ -81,9 +75,22 @@ typedef struct		s_plane
 	t_clrf_rgb	color;
 }					t_plane;
 
+typedef union		u_obj_container
+{
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+	t_plane		plane;
+}					t_obj_container;
+
+typedef struct		s_obj
+{
+	t_obj_type			type;
+	t_obj_container		as;
+}					t_obj;
+
 typedef struct		s_scene
 {
-	t_array		objs;
+	t_vector	objs;
 	int			nb_spheres;
 	t_vec3d		light_pos;
 	t_clrf_rgb	light_c;
@@ -129,17 +136,17 @@ int					obj_ray_hit(t_obj *obj, t_ray ray, double *t);
 t_vec3d				obj_normal(t_obj *obj, t_vec3d pt);
 t_clrf_rgb			obj_surface_color(t_obj *obj, t_vec3d pt);
 
-t_obj				*obj_sphere_new(t_vec3d orig, double radius
+t_obj				obj_sphere(t_vec3d orig, double radius
 		, t_clrf_rgb color);
 int					obj_sphere_ray_hit(t_sphere *sphere, t_ray ray, double *t);
 t_vec3d				obj_sphere_normal(t_sphere *sphere, t_vec3d p);
 
-t_obj				*obj_cylinder_new(t_vec3d orig, t_vec3d dir, double radius
+t_obj				obj_cylinder(t_vec3d orig, t_vec3d dir, double radius
 		, t_clrf_rgb color);
 int					obj_cylinder_ray_hit(t_cylinder *cyl, t_ray ray, double *t);
 t_vec3d				obj_cylinder_normal(t_cylinder *cyl, t_vec3d p);
 
-t_obj				*obj_plane_new(t_vec3d orig, t_vec3d normal
+t_obj				obj_plane(t_vec3d orig, t_vec3d normal
 		, t_clrf_rgb color);
 int					obj_plane_ray_hit(t_plane *plane, t_ray ray, double *t);
 t_vec3d				obj_plane_normal(t_plane *plane, t_vec3d pt);

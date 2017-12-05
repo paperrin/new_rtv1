@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:59:54 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 15:46:33 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 17:54:16 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ t_obj			*throw_ray_get_hit_obj(t_scene scene, t_ray ray, double *t)
 {
 	t_obj		*obj_nearest;
 	double		t_nearest;
-	int			i;
+	t_obj		*obj_cur;
 
 	obj_nearest = NULL;
 	t_nearest = 1000000000;
-	i = -1;
-	while (++i < (int)scene.objs.size)
+	obj_cur = (t_obj*)ft_vector_begin(&scene.objs);
+	while (++obj_cur < (t_obj*)ft_vector_end(&scene.objs))
 	{
-		if (obj_ray_hit(scene.objs.begin[i], ray, t) && *t < t_nearest)
+		if (obj_ray_hit(obj_cur, ray, t) && *t < t_nearest)
 		{
-			obj_nearest = scene.objs.begin[i];
+			obj_nearest = obj_cur;
 			t_nearest = *t;
 		}
 	}
@@ -107,7 +107,6 @@ t_clrf_rgb		throw_ray_get_color(t_scene scene, t_ray ray)
 	return (color);
 }
 
-
 void			render(t_app *app)
 {
 	t_scene			scene;
@@ -115,8 +114,9 @@ void			render(t_app *app)
 	int				width = app->draw_buf.width;
 	int				height = app->draw_buf.height;
 	double			pxl_ratio;
-	int				cyl_id;
 	t_vec3d			rot;
+	t_obj			obj_new;
+	t_vec3d			off;
 
 	cam = cam_create();
 
@@ -126,49 +126,44 @@ void			render(t_app *app)
 
 	scene.light_c = ft_clrf_rgb(1, 1, 1);
 
-	scene.objs = ft_array_init(&obj_free);
-
+	scene.objs = ft_vector_create(sizeof(t_obj), NULL, NULL);
+(void)off;
 #define SCENE 1
 
 #if SCENE == 0
 /* MOLECULES SCENE ========================================================= */
 
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(0, 0, 1), 0.4
-			, ft_clrf_rgb(0.1, 0.1, 0.1)));
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(0.15, 0.15, 1), 0.35
-			, ft_clrf_rgb(1, 0, 0)));
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(-0.15, -0.15, 1), 0.35
-			, ft_clrf_rgb(1, 0, 0)));
-
-	t_vec3d		off = ft_vec3d(-2, 0.75, 2);
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(off.x + 0, off.y + 0, off.z + 1)
-			, 0.4, ft_clrf_rgb(0.8, 0, 0)));
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(off.x + 0.25, off.y - 0.25, off.z + 1)
-			, 0.3, ft_clrf_rgb(0.8, 0.8, 0.8)));
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(off.x + -0.25, off.y - 0.25, off.z + 1)
-			, 0.3, ft_clrf_rgb(0.8, 0.8, 0.8)));
-
-	ft_array_push_back(&scene.objs
-		, obj_sphere_new(ft_vec3d(-5, 10, 1), 0.4
-			, ft_clrf_rgb(0, 0.8, 0)));
-
-	/* white plane */
-	ft_array_push_back(&scene.objs
-		, obj_plane_new(ft_vec3d(0, 0, 5)
-			, ft_vec3d(0, 0, -1)
-			, ft_clrf_rgb(1, 1, 1)));
-
-	/* blue plane */
-	ft_array_push_back(&scene.objs
-		, obj_plane_new(ft_vec3d(0, -2, 0)
-			, ft_vec3d(0, 1, 0)
-			, ft_clrf_rgb(0.5, 0.5, 0.7)));
+	obj_new = obj_sphere(ft_vec3d(0, 0, 1), 0.4, ft_clrf_rgb(0.1, 0.1, 0.1));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere(ft_vec3d(0.15, 0.15, 1), 0.35, ft_clrf_rgb(1, 0, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere(ft_vec3d(-0.15, -0.15, 1), 0.35, ft_clrf_rgb(1, 0, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	off = ft_vec3d(-2, 0.75, 2);
+	obj_new = obj_sphere(ft_vec3d(off.x + 0, off.y + 0, off.z + 1), 0.4, ft_clrf_rgb(0.8, 0, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere(ft_vec3d(off.x + 0.25, off.y - 0.25, off.z + 1), 0.3, ft_clrf_rgb(0.8, 0.8, 0.8));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere(ft_vec3d(off.x + -0.25, off.y - 0.25, off.z + 1), 0.3, ft_clrf_rgb(0.8, 0.8, 0.8));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere(ft_vec3d(-5, 10, 1), 0.4, ft_clrf_rgb(0, 0.8, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_plane(ft_vec3d(0, 0, 5), ft_vec3d(0, 0, -1), ft_clrf_rgb(1, 1, 1));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_plane(ft_vec3d(0, -2, 0), ft_vec3d(0, 1, 0), ft_clrf_rgb(0.5, 0.5, 0.7));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_sphere();
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
 
 	scene.light_pos = ft_vec3d(0, 5, -5);
 	scene.light_i = 500;
@@ -189,46 +184,25 @@ void			render(t_app *app)
 /* CYLINDERS SCENE ========================================================= */
 
 	pxl_ratio = 1. / 1;
-	/* diagonal cyl */
-	ft_array_push_back(&scene.objs
-		, obj_cylinder_new(ft_vec3d(-2.5, 2, 0)
-		, ft_vec3d_norm(ft_vec3d(0.5, -0.5, 0)), 0.2, ft_clrf_rgb(0.8, 0.8, 0)));
 
-	/* orange cyl */
-	ft_array_push_back(&scene.objs
-		, obj_cylinder_new(ft_vec3d(0, -8, 0)
-		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0)));
-
-	/* pink cyl */
-	ft_array_push_back(&scene.objs
-		, obj_cylinder_new(ft_vec3d(0, 8, 0)
-		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0.8)));
-
-	/* red cyl */
-	ft_array_push_back(&scene.objs
-		, obj_cylinder_new(ft_vec3d(1, 0, 0)
-		, ft_vec3d_norm(ft_vec3d(1, 0, 0)), 0.35, ft_clrf_rgb(1, 0, 0)));
-
-	/* right green cyl */
-	ft_array_push_back(&scene.objs
-		, obj_cylinder_new(ft_vec3d(0, 0, 0)
-		, ft_vec3d_norm(ft_vec3d(0, 1, 0)), 0.8
-		, ft_clrf_rgb(0, 0.8, 0)));
-
-	/* blue plane */
-
-	ft_array_push_back(&scene.objs
-		, obj_plane_new(ft_vec3d(0, 0, 0)
-		, ft_vec3d_rot(ft_vec3d(0, 0, -1), 0, 0, 0)
-		, ft_clrf_rgb(0.5, 0.5, 0.8)));
-
-	cyl_id = 4;
-	ft_putnbr(((t_obj**)scene.objs.begin)[cyl_id]->type);
-	ft_putendl("");
-	print_vec("dir", ((t_cylinder*)((t_obj**)scene.objs.begin)[cyl_id]->o)->dir);
-	print_vec("orig", ((t_cylinder*)((t_obj**)scene.objs.begin)[cyl_id]->o)->orig);
-	printf("radius: %lf\n", ((t_cylinder*)((t_obj**)scene.objs.begin)[cyl_id]->o)->radius);
-	ft_putnbr(((t_obj**)scene.objs.begin)[cyl_id]->type);
+	obj_new = obj_cylinder(ft_vec3d(-2.5, 2, 0), ft_vec3d_norm(ft_vec3d(0.5, -0.5, 0)), 0.2, ft_clrf_rgb(0.8, 0.8, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_cylinder(ft_vec3d(0, -8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_cylinder(ft_vec3d(0, 8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0.8));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_cylinder(ft_vec3d(1, 0, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 0.35, ft_clrf_rgb(1, 0, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_cylinder(ft_vec3d(0, 0, 0), ft_vec3d_norm(ft_vec3d(0, 1, 0)), 0.8, ft_clrf_rgb(0, 0.8, 0));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
+	obj_new = obj_plane(ft_vec3d(0, 0, 0), ft_vec3d_rot(ft_vec3d(0, 0, -1), 0, 0, 0), ft_clrf_rgb(0.5, 0.5, 0.8));
+	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
+		return ;
 
 	/*
 	scene.light_pos = ft_vec3d(-6, 4, -5);

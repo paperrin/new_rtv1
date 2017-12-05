@@ -6,24 +6,23 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:12:23 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/30 19:20:21 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 17:48:30 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj		*obj_cylinder_new(t_vec3d orig, t_vec3d dir, double radius
+t_obj		obj_cylinder(t_vec3d orig, t_vec3d dir, double radius
 		, t_clrf_rgb color)
 {
-	t_cylinder	*cyl;
+	t_obj		obj;
 
-	if (!(cyl = (t_cylinder*)malloc(sizeof(*cyl))))
-		return (NULL);
-	cyl->orig = orig;
-	cyl->dir = dir;
-	cyl->radius = radius;
-	cyl->color = color;
-	return (obj_new(obj_type_cylinder, cyl));
+	obj.type = obj_type_cylinder;
+	obj.as.cylinder.orig = orig;
+	obj.as.cylinder.dir = dir;
+	obj.as.cylinder.radius = radius;
+	obj.as.cylinder.color = color;
+	return (obj);
 }
 
 int				obj_cylinder_ray_hit(t_cylinder *cyl, t_ray ray, double *t)

@@ -90,6 +90,7 @@ CFILES		=	ft_swap.c			\
 				ft_itoa_oct.c		\
 				ft_itoa_bin.c		\
 				ft_itoa_dec.c		\
+				ft_ftoa.c			\
 				ft_putchar.c		\
 				ft_putwchar.c		\
 				ft_putnchar.c		\

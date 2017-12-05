@@ -6,22 +6,21 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 18:38:51 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/30 18:12:11 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 17:47:14 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj		*obj_sphere_new(t_vec3d orig, double radius, t_clrf_rgb color)
+t_obj		obj_sphere(t_vec3d orig, double radius, t_clrf_rgb color)
 {
-	t_sphere	*sphere;
+	t_obj		obj;
 
-	if (!(sphere = (t_sphere*)malloc(sizeof(*sphere))))
-		return (NULL);
-	sphere->orig = orig;
-	sphere->radius = radius;
-	sphere->color = color;
-	return (obj_new(obj_type_cylinder, sphere));
+	obj.type = obj_type_sphere;
+	obj.as.sphere.orig = orig;
+	obj.as.sphere.radius = radius;
+	obj.as.sphere.color = color;
+	return (obj);
 }
 
 int				obj_sphere_ray_hit(t_sphere *sphere, t_ray ray, double *t)

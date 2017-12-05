@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:22:26 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/05 01:23:34 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/05 19:22:10 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SET(SRC_FILES
 	src/camera_render.c
 	src/render.c
 	src/solve_quadratic.c
-	src/obj.c
 	src/obj_f.c
 	src/obj_sphere.c
 	src/obj_cylinder.c

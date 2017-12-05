@@ -52,7 +52,6 @@ CFILES		=	graphics/window.c								\
 				camera_render.c			\
 				render.c				\
 				solve_quadratic.c		\
-				obj.c					\
 				obj_f.c					\
 				obj_sphere.c			\
 				obj_cylinder.c			\
@@ -93,11 +92,13 @@ $(OBJ_DIR)		:
 clean			:
 						$(RM) $(OBJ_DIR)
 						make -C ./libft/ clean
-						make -C ./glfw/build/src/ clean
+						@if [ -d "./glfw/build/src" ]; then \
+							make -C ./glfw/build/src clean; \
+						fi
+						$(RM) ./glfw/build
 
 fclean			:	clean
 						$(RM) $(NAME)
-						$(RM) ./glfw/build
 						make -C ./libft/ fclean
 
 re				:	fclean all

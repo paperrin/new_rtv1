@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 12:52:47 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 15:10:03 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 19:17:56 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char			*ft_itoa_bin(uintmax_t nb, int prefix, int precision);
 char			*ft_itoa_dec(intmax_t nb, int alt, char prefix, int precision);
 char			*ft_uitoa_dec(uintmax_t nb, int alt, char prefix
 		, int precision);
+char			*ft_ftoa(long double nb, unsigned int n_decimal, char *sep);
 void			ft_putchar(char c);
 void			ft_putchar(char c);
 void			ft_putwchar(wchar_t c);

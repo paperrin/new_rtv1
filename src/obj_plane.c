@@ -6,22 +6,21 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 18:38:51 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/30 18:12:00 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/05 17:49:31 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_obj		*obj_plane_new(t_vec3d orig, t_vec3d normal, t_clrf_rgb color)
+t_obj		obj_plane(t_vec3d orig, t_vec3d normal, t_clrf_rgb color)
 {
-	t_plane		*plane;
+	t_obj		obj;
 
-	if (!(plane = (t_plane*)malloc(sizeof(*plane))))
-		return (NULL);
-	plane->orig = orig;
-	plane->normal = normal;
-	plane->color = color;
-	return (obj_new(obj_type_plane, plane));
+	obj.type = obj_type_plane;
+	obj.as.plane.orig = orig;
+	obj.as.plane.normal = normal;
+	obj.as.plane.color = color;
+	return (obj);
 }
 
 int				obj_plane_ray_hit(t_plane *plane, t_ray ray, double *t)
