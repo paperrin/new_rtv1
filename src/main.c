@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:32:48 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 19:16:25 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/06 16:07:11 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			f_callback_loop(void *user_ptr)
 
 int				main(void)
 {
-	t_app	app;
+	t_app		app;
 
 	if (!create_app(&app, WIN_WIDTH, WIN_HEIGHT, "RTv1 paperrin"))
 		return (EXIT_FAILURE);

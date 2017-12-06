@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:06:12 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/05 19:23:53 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/06 14:07:16 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SET(SRC_FILES
 	src/ft_atoi.c
 	src/ft_atoi_base.c
 	src/ft_atoi_hex.c
+	src/ft_atof.c
 	src/ft_isalpha.c
 	src/ft_isdigit.c
 	src/ft_isalnum.c

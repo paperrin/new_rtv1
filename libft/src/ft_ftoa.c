@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 19:15:21 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 19:19:22 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/06 15:43:37 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,36 @@
 #include <math.h>
 #include <stdlib.h>
 
-static char		*combine_nb(long i_part, long d_part, char *sep)
+static char		*get_decimal_part(intmax_t d_part, unsigned int n_decimal)
+{
+	char		*zeros;
+	char		*d_str;
+	char		*str;
+	size_t		i;
+
+	n_decimal -= floor(log10(d_part));
+	if (!(zeros = (char*)malloc(sizeof(*zeros) * n_decimal + 1)))
+		return (NULL);
+	i = 0;
+	while (i < n_decimal - 1)
+	{
+		zeros[i] = '0';
+		i++;
+	}
+	zeros[i] = '\0';
+	if (!(d_str = ft_itoa(d_part)))
+	{
+		free(zeros);
+		return (NULL);
+	}
+	str = ft_strjoin(zeros, d_str);
+	free(zeros);
+	free(d_str);
+	return (str);
+}
+
+static char		*combine_nb(intmax_t i_part, intmax_t d_part,
+		unsigned int n_decimal, const char *sep)
 {
 	char	*str;
 	char	*i_str;
@@ -25,7 +54,7 @@ static char		*combine_nb(long i_part, long d_part, char *sep)
 	if (d_part > 0 && (i_str = ft_strjoin(str, sep)))
 	{
 		free(str);
-		if (!(d_str = ft_itoa(d_part)))
+		if (!(d_str = get_decimal_part(d_part, n_decimal)))
 		{
 			free(i_str);
 			return (NULL);
@@ -39,22 +68,23 @@ static char		*combine_nb(long i_part, long d_part, char *sep)
 	return (str);
 }
 
-char			*ft_ftoa(long double nb, unsigned int n_decimal, char *sep)
+char			*ft_ftoa(long double nb, unsigned int n_decimal,
+		const char *sep)
 {
 	char			*str;
-	long			i_part;
-	long			d_part;
+	intmax_t		i_part;
+	intmax_t		d_part;
 	unsigned int	mult;
 
-	i_part = (long)nb;
+	i_part = (intmax_t)nb;
 	d_part = -1;
 	if (n_decimal > 0)
 	{
 		if (n_decimal > 9)
 			n_decimal = 9;
 		mult = pow(10, n_decimal);
-		d_part = ABS((long)(nb * mult) % mult);
+		d_part = ABS((intmax_t)(nb * mult) % mult);
 	}
-	str = combine_nb(i_part, d_part, sep);
+	str = combine_nb(i_part, d_part, n_decimal, sep);
 	return (str);
 }

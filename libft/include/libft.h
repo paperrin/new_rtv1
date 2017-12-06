@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 12:52:47 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 19:17:56 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/06 15:47:27 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				ft_atoi_base(const char *str, int base);
 int				ft_atoi(const char *str);
 int				ft_atoi_hex(const char *str);
 int				ft_atoi_hex_is_valid(const char *str);
+long double		ft_atof(const char *str, char sep);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
@@ -121,7 +122,8 @@ char			*ft_itoa_bin(uintmax_t nb, int prefix, int precision);
 char			*ft_itoa_dec(intmax_t nb, int alt, char prefix, int precision);
 char			*ft_uitoa_dec(uintmax_t nb, int alt, char prefix
 		, int precision);
-char			*ft_ftoa(long double nb, unsigned int n_decimal, char *sep);
+char			*ft_ftoa(long double nb, unsigned int n_decimal,
+		const char *sep);
 void			ft_putchar(char c);
 void			ft_putchar(char c);
 void			ft_putwchar(wchar_t c);

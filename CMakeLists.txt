@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:22:26 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/05 19:22:10 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/06 13:18:44 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,13 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
+find_package(OpenGL REQUIRED)
+if (NOT ${OPENGL_FOUND})
+	message("OpenGL not found")
+endif()
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/glfw)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/libft)
-
-find_package(OpenGL REQUIRED)
 
 include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -55,5 +58,6 @@ add_executable(rtv1 ${SRC_FILES})
 target_link_libraries(rtv1
 	ft
 	glfw
+	${OPENGL_LIBRARY}
 	${OPENGL_glu_LIBRARY}
 )

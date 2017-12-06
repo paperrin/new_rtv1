@@ -57,6 +57,7 @@ CFILES		=	ft_swap.c			\
 				ft_atoi.c			\
 				ft_atoi_base.c		\
 				ft_atoi_hex.c		\
+				ft_atof.c			\
 				ft_isalpha.c		\
 				ft_isdigit.c		\
 				ft_isalnum.c		\
