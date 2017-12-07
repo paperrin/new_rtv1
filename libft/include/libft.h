@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 12:52:47 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/06 15:47:27 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:49:16 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int				ft_atoi(const char *str);
 int				ft_atoi_hex(const char *str);
 int				ft_atoi_hex_is_valid(const char *str);
 long double		ft_atof(const char *str, char sep);
+int				ft_is_whitespace(char c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);

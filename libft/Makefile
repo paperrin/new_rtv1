@@ -58,6 +58,7 @@ CFILES		=	ft_swap.c			\
 				ft_atoi_base.c		\
 				ft_atoi_hex.c		\
 				ft_atof.c			\
+				ft_is_whitespace.c	\
 				ft_isalpha.c		\
 				ft_isdigit.c		\
 				ft_isalnum.c		\
@@ -200,7 +201,9 @@ CFILES		=	ft_swap.c			\
 				graph/ft_graph_transform.c			\
 				graph/ft_graph_env_init.c			\
 				graph/ft_graph_push.c				\
-				graph/ft_graph_pop.c
+				graph/ft_graph_pop.c				\
+				instream/ft_input_stream.c				\
+				instream/ft_input_stream_file.c
 
 SRC			=	$(CFILES:%=$(SRC_DIR)%)
 

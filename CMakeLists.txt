@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:22:26 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/06 13:18:44 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/06 22:25:40 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,16 +42,16 @@ SET(SRC_FILES
 	src/graphics/window_callback_mouse_button.c
 	src/graphics/window_callback_mouse_scroll.c
 	src/graphics/image.c
+	src/objs/obj_f.c
+	src/objs/obj_sphere.c
+	src/objs/obj_cylinder.c
+	src/objs/obj_plane.c
+	src/camera/camera.c
+	src/camera/camera_render.c
 	src/main.c
 	src/event.c
-	src/camera.c
-	src/camera_render.c
 	src/render.c
 	src/solve_quadratic.c
-	src/obj_f.c
-	src/obj_sphere.c
-	src/obj_cylinder.c
-	src/obj_plane.c
 )
 add_executable(rtv1 ${SRC_FILES})
 

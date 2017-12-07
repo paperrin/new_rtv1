@@ -6,7 +6,7 @@
 #    By: paperrin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/04 23:06:12 by paperrin          #+#    #+#              #
-#    Updated: 2017/12/06 14:07:16 by paperrin         ###   ########.fr        #
+#    Updated: 2017/12/07 18:09:14 by paperrin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SET(SRC_FILES
 	src/ft_atoi_base.c
 	src/ft_atoi_hex.c
 	src/ft_atof.c
+	src/ft_is_whitespace.c
 	src/ft_isalpha.c
 	src/ft_isdigit.c
 	src/ft_isalnum.c
@@ -192,6 +193,8 @@ SET(SRC_FILES
 	src/graph/ft_graph_env_init.c
 	src/graph/ft_graph_push.c
 	src/graph/ft_graph_pop.c
+	src/instream/ft_input_stream.c
+	src/instream/ft_input_stream_file.c
 )
 
 add_library(ft ${SRC_FILES})

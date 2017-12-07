@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:34:16 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 18:00:40 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/07 14:29:36 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,9 @@ typedef struct		s_camera
 	double		px_ratio;
 }					t_camera;
 
-/* TODO : DELETE */
+/*
+** TODO : DELETE
+*/
 void				print_vec(char *tag, t_vec3d vec);
 
 void				destroy_app(t_app *app, int exit_code);

@@ -38,7 +38,11 @@ INC_PARAMS	=	$(INC_DIRS:%=-I%)
 
 LIB_PARAMS	=	$(LIB_DIRS:%=-L%)
 
-CFILES		=	graphics/window.c								\
+CFILES		=	\
+				camera/camera.c					\
+				camera/camera_render.c			\
+				\
+				graphics/window.c								\
 				graphics/window_render.c						\
 				graphics/window_callback.c						\
 				graphics/window_callback_key.c					\
@@ -46,16 +50,16 @@ CFILES		=	graphics/window.c								\
 				graphics/window_callback_mouse_button.c			\
 				graphics/window_callback_mouse_scroll.c			\
 				graphics/image.c								\
-				main.c					\
+				\
+				objs/obj_f.c				\
+				objs/obj_sphere.c			\
+				objs/obj_cylinder.c			\
+				objs/obj_plane.c			\
+				\
 				event.c					\
-				camera.c				\
-				camera_render.c			\
 				render.c				\
 				solve_quadratic.c		\
-				obj_f.c					\
-				obj_sphere.c			\
-				obj_cylinder.c			\
-				obj_plane.c
+				main.c					\
 
 
 SRC			=	$(CFILES:%=$(SRC_DIR)%)
