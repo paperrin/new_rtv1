@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:12:23 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 17:48:30 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:37:02 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,19 @@ t_obj		obj_cylinder(t_vec3d orig, t_vec3d dir, double radius
 
 int				obj_cylinder_ray_hit(t_cylinder *cyl, t_ray ray, double *t)
 {
-	t_vec3d		cd_min_co;
-	t_vec3d		axis_xy[2];
+	t_vec3d		pdp;
+	t_vec3d		eyexpdp;
+	t_vec3d		rdxpdp;
 	double		abc[3];
 	double		hits[2];
-	t_vec3d		dist;
 
-	dist = ft_vec3d_sub(cyl->orig, cyl->dir);
-	cd_min_co = ft_vec3d_sub(dist, cyl->orig);
-	axis_xy[0] = ft_vec3d_cross(ft_vec3d_sub(ray.orig, cyl->orig), cd_min_co);
-	axis_xy[1] = ft_vec3d_cross(ray.dir, cd_min_co);
-	abc[0] = ft_vec3d_dot(axis_xy[1], axis_xy[1]);
-	abc[1] = 2 * ft_vec3d_dot(axis_xy[0], axis_xy[1]);
-	abc[2] = ft_vec3d_dot(axis_xy[0], axis_xy[0]) - (cyl->radius * cyl->radius
-		* ft_vec3d_dot(cd_min_co, cd_min_co));
+	pdp = ft_vec3d_sub(ft_vec3d_sub(cyl->orig, cyl->dir), cyl->orig);
+	eyexpdp = ft_vec3d_cross(ft_vec3d_sub(ray.orig, cyl->orig), pdp);
+	rdxpdp = ft_vec3d_cross(ray.dir, pdp);
+	abc[0] = ft_vec3d_dot(rdxpdp, rdxpdp);
+	abc[1] = 2 * ft_vec3d_dot(rdxpdp, eyexpdp);
+	abc[2] = ft_vec3d_dot(eyexpdp, eyexpdp) - (cyl->radius * cyl->radius
+		* ft_vec3d_dot(pdp, pdp));
 	if (solve_quadratic(abc, hits) < 0 || hits[0] < 0)
 		return (0);
 	*t = hits[0];

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 17:48:42 by paperrin          #+#    #+#             */
-/*   Updated: 2017/11/30 17:53:01 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:41:05 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ double		solve_quadratic(double *abc, double *values)
 	if (discr < 0)
 		return (-1);
 	discr = sqrt(discr);
-	values[0] = (-abc[1] - discr) / 2;
-	values[1] = (-abc[1] + discr) / 2;
+	values[0] = (-abc[1] - discr) / (2 * abc[0]);
+	values[1] = (-abc[1] + discr) / (2 * abc[0]);
 	if (values[1] < values[0])
 	{
 		tmp = values[1];

@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 20:32:48 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/07 18:43:17 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/08 17:13:32 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,7 @@ void			f_callback_loop(void *user_ptr)
 int				main(void)
 {
 	t_app			app;
-	t_in_stream		stream;
-	char			c;
 
-	if (!ft_in_stream_file_open(&stream, "test"))
-		return (EXIT_FAILURE);
-	while ((c = ft_in_stream_next(&stream)) >= 0)
-	{
-		ft_putchar(c);
-	}
-	if (c < 0)
-		return (EXIT_FAILURE);
-	ft_in_stream_file_close(&stream);
 	if (!create_app(&app, WIN_WIDTH, WIN_HEIGHT, "RTv1 paperrin"))
 		return (EXIT_FAILURE);
 	window_callback_key(&app.win, &f_callback_key);

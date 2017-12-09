@@ -6,7 +6,7 @@
 /*   By: paperrin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 21:59:54 by paperrin          #+#    #+#             */
-/*   Updated: 2017/12/05 17:54:16 by paperrin         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:45:28 by paperrin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ void			render(t_app *app)
 
 	scene.objs = ft_vector_create(sizeof(t_obj), NULL, NULL);
 (void)off;
+(void)rot;
+(void)pxl_ratio;
 #define SCENE 1
 
 #if SCENE == 0
@@ -161,12 +163,9 @@ void			render(t_app *app)
 	obj_new = obj_plane(ft_vec3d(0, -2, 0), ft_vec3d(0, 1, 0), ft_clrf_rgb(0.5, 0.5, 0.7));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
-	obj_new = obj_sphere();
-	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
-		return ;
 
 	scene.light_pos = ft_vec3d(0, 5, -5);
-	scene.light_i = 500;
+	scene.light_i = 700;
 
 	cam = cam_create();
 	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 10));
@@ -183,15 +182,15 @@ void			render(t_app *app)
 #elif SCENE == 1
 /* CYLINDERS SCENE ========================================================= */
 
-	pxl_ratio = 1. / 1;
+	pxl_ratio = 1. / 2;
 
 	obj_new = obj_cylinder(ft_vec3d(-2.5, 2, 0), ft_vec3d_norm(ft_vec3d(0.5, -0.5, 0)), 0.2, ft_clrf_rgb(0.8, 0.8, 0));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
-	obj_new = obj_cylinder(ft_vec3d(0, -8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0));
+	obj_new = obj_cylinder(ft_vec3d(0, -8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 1.35, ft_clrf_rgb(1, 0.5, 0));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
-	obj_new = obj_cylinder(ft_vec3d(0, 8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 3.35, ft_clrf_rgb(1, 0.5, 0.8));
+	obj_new = obj_cylinder(ft_vec3d(0, 8, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 1.35, ft_clrf_rgb(1, 0.5, 0.8));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
 	obj_new = obj_cylinder(ft_vec3d(1, 0, 0), ft_vec3d_norm(ft_vec3d(1, 0, 0)), 0.35, ft_clrf_rgb(1, 0, 0));
@@ -200,17 +199,17 @@ void			render(t_app *app)
 	obj_new = obj_cylinder(ft_vec3d(0, 0, 0), ft_vec3d_norm(ft_vec3d(0, 1, 0)), 0.8, ft_clrf_rgb(0, 0.8, 0));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
+
 	obj_new = obj_plane(ft_vec3d(0, 0, 0), ft_vec3d_rot(ft_vec3d(0, 0, -1), 0, 0, 0), ft_clrf_rgb(0.5, 0.5, 0.8));
 	if (!ft_vector_push_back(&scene.objs, (char*)&obj_new))
 		return ;
 
-	/*
-	scene.light_pos = ft_vec3d(-6, 4, -5);
-	*/
-	scene.light_pos = ft_vec3d(0, 0, -5);
-	scene.light_i = 400;
 
-	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 10));
+	scene.light_pos = ft_vec3d(-6, 4, -5);
+
+	scene.light_i = 500;
+
+	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 20));
 	cam_set_view_rect(&cam, ft_vec2i(0, 0), ft_vec2i(width / 2, height / 2), pxl_ratio);
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
@@ -219,7 +218,7 @@ void			render(t_app *app)
 	cam.dir = ft_vec3d_norm(ft_vec3d_rot(cam.dir, rot.x, rot.y, rot.z));
 	cam.right = ft_vec3d_norm(ft_vec3d_rot(cam.right, rot.x, rot.y, rot.z));
 	cam.up = ft_vec3d_norm(ft_vec3d_rot(cam.up, rot.x, rot.y, rot.z));
-	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 10));
+	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 20));
 	cam_set_view_rect(&cam, ft_vec2i(width / 2, 0), ft_vec2i(width / 2, height / 2), pxl_ratio);
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
@@ -228,7 +227,7 @@ void			render(t_app *app)
 	cam.dir = ft_vec3d_norm(ft_vec3d_rot(cam.dir, rot.x, rot.y, rot.z));
 	cam.right = ft_vec3d_norm(ft_vec3d_rot(cam.right, rot.x, rot.y, rot.z));
 	cam.up = ft_vec3d_norm(ft_vec3d_rot(cam.up, rot.x, rot.y, rot.z));
-	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 10));
+	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 20));
 	cam_set_view_rect(&cam, ft_vec2i(0, height / 2), ft_vec2i(width / 2, height / 2), pxl_ratio);
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
@@ -237,7 +236,7 @@ void			render(t_app *app)
 	cam.dir = ft_vec3d_norm(ft_vec3d_rot(cam.dir, rot.x, rot.y, rot.z));
 	cam.right = ft_vec3d_norm(ft_vec3d_rot(cam.right, rot.x, rot.y, rot.z));
 	cam.up = ft_vec3d_norm(ft_vec3d_rot(cam.up, rot.x, rot.y, rot.z));
-	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 5));
+	cam.pos = ft_vec3d_sub(ft_vec3d(0, 0, 0), ft_vec3d_scale(cam.dir, 10));
 	cam_set_view_rect(&cam, ft_vec2i(width / 2, height / 2), ft_vec2i(width / 2, height / 2), pxl_ratio);
 	cam_render_to_image(cam, scene, &app->draw_buf);
 
